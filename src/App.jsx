@@ -3,6 +3,7 @@ import './App.css'
 import ThreeScene from './ThreeScene'
 
 function App() {
+  let [count, setCount] = useState(0);
 
   return (
     <div className="App">
