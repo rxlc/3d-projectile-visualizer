@@ -1,0 +1,25 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+}
+
+html,
+body {
+  overflow: hidden
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
