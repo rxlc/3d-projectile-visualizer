@@ -4,6 +4,9 @@ import createText from '../Utils/Text';
 export default class Launcher {
     constructor() {
         this.setInstance();
+        this.moving = false;
+
+        
     }
 
     setInstance() {
@@ -15,4 +18,6 @@ export default class Launcher {
         this.instance.position.set(4,0,0);
         this.indicator = createText('Target',0.08);
     }
+
+
 }

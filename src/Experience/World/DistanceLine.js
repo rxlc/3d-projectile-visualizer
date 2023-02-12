@@ -17,7 +17,7 @@ export default class DistanceLine {
         const line = new MeshLine();
         line.setPoints(points.flat());
 
-        const material = new MeshLineMaterial({lineWidth: 0.02, color: 0x7f7f7f});
+        const material = new MeshLineMaterial({lineWidth: 0.005, color: 0x7f7f7f});
 
         this.distanceLine = new THREE.Mesh(line, material);
         this.scene.add(this.distanceLine);

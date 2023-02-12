@@ -1,12 +1,15 @@
-import { useState } from 'react'
-import './App.css'
 import ThreeScene from './ThreeScene'
 
+import LaunchPanel from './Components/LaunchPanel'
+import Settings from './Components/Settings'
+
+
 function App() {
-  let [count, setCount] = useState(0);
 
   return (
     <div className="App">
+      <LaunchPanel/>
+      <Settings/>
       <ThreeScene/>
     </div>
   )

@@ -75,15 +75,6 @@ export default class World {
             if (this.intersects.length > 0) {
                 let selected = this.intersects[0].object.uuid;
 
-                if (selected == this.launcher.instance.uuid) {
-                    if (this.transformMode != 1) {
-                        this.transformControls.showX = false;
-                        this.transformControls.showZ = false;
-                        this.transformControls.attach(this.launcher.instance);
-                        this.transformMode = 1;
-                    }
-                }
-
                 if (selected == this.target.instance.uuid) {
                     if (this.transformMode != 2) {
                         this.transformControls.showX = true;
