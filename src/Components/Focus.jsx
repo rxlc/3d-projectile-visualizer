@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Flex, Text, Button, HStack } from '@chakra-ui/react';
 
-function Settings() {
+function Focus() {
     return (
         <Flex
             position="absolute"
@@ -29,4 +29,4 @@ function Settings() {
     )
 }
 
-export default Settings;
+export default Focus;

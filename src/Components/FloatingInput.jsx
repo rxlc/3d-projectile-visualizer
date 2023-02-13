@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { AngleContext } from "../Contexts/AngleContext";
+
 import {
     ChakraProvider,
     FormControl,
@@ -49,15 +52,16 @@ export default function FloatingInput({
     width,
     height,
     fontsize,
-    helper
+    helper,
 }) {
+
+    const {setAngle} = useContext(AngleContext)
 
     return (
         <ChakraProvider theme={theme}>
         <Box p={2}>
             <FormControl variant="floating">
-            <Input placeholder=" " width={width} height={height}/>
-            {/* It is important that the Label comes after the Control due to css selectors */}
+            <Input placeholder=" " width={width} height={height} onChange={(event) => setAngle(event.target.value)}/>
             <FormLabel fontSize={fontsize}>{label}</FormLabel>
             <FormHelperText fontSize={"xs"}>{helper}</FormHelperText>
             <FormErrorMessage></FormErrorMessage>

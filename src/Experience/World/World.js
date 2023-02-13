@@ -37,8 +37,8 @@ export default class World {
         
     }
 
-    launch() {
-        this.projectile.newTrajectory(this.launcher.instance.position, this.target.instance.position, 30)
+    launch(angle) {
+        this.projectile.newTrajectory(this.launcher.instance.position, this.target.instance.position, angle)
     }
 
     clear() {

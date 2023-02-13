@@ -1,15 +1,16 @@
 import React, {useState, useContext, useEffect} from 'react'
 import { Card, Text, Tabs, TabPanels, Tab, TabList, TabPanel, Button, HStack, InputGroup, Input, Flex} from '@chakra-ui/react';
 import { ExperienceContext } from '../Contexts/ExperienceContext';
+import { AngleContext } from '../Contexts/AngleContext';
 
 import FloatingInput from './FloatingInput';
 
 function LaunchPanel() {
     const experience = useContext(ExperienceContext);
+    const {angle} = useContext(AngleContext)
+
     const [isHovered, setIsHovered] = useState(false);
-
     const [editingPos, setEditingPos] = useState(false)
-
     const [targetPos, setTargetPos] = useState({x:0, y:0, z:0})
 
     useEffect(() => {
@@ -53,9 +54,9 @@ function LaunchPanel() {
     }
 
     function launch() {
-        experience.experience.world.launch()
+        experience.experience.world.launch(angle)
     }
-  
+
     return (
         <div style={{
             height: '100vh',
@@ -81,15 +82,15 @@ function LaunchPanel() {
                     <Flex width="95%" ml="8px">
                         <InputGroup flexDirection={"column"} margin="4px">
                             <Text ml="5px" fontSize={"xs"}>x</Text>
-                            <Input variant='outline' height="35px" value={editingPos ? null : targetPos.x} onFocus={() => setEditingPos(true)}  onBlur={(event) => setTargetPosX(Number(event.target.value))}/>
+                            <Input variant='outline' height="35px" onChange={() => 0} value={editingPos ? null : targetPos.x} onFocus={() => setEditingPos(true)}  onBlur={(event) => setTargetPosX(Number(event.target.value))}/>
                         </InputGroup>
                         <InputGroup flexDirection={"column"} margin="4px">
                             <Text ml="5px" fontSize={"xs"}>y</Text>
-                            <Input variant='outline' height="35px" value={editingPos ? null : targetPos.y} onFocus={() => setEditingPos(true)}  onBlur={(event) => setTargetPosY(Number(event.target.value))}/>
+                            <Input variant='outline' height="35px" onChange={() => 0} value={editingPos ? null : targetPos.y} onFocus={() => setEditingPos(true)}  onBlur={(event) => setTargetPosY(Number(event.target.value))}/>
                         </InputGroup>
                         <InputGroup flexDirection={"column"} margin="4px">
                             <Text ml="5px" fontSize={"xs"}>z</Text>
-                            <Input variant='outline' height="35px" value={editingPos ? null : targetPos.z} onFocus={() => setEditingPos(true)}  onBlur={(event) => setTargetPosZ(Number(event.target.value))}/>
+                            <Input variant='outline' height="35px" onChange={() => 0} value={editingPos ? null : targetPos.z} onFocus={() => setEditingPos(true)}  onBlur={(event) => setTargetPosZ(Number(event.target.value))}/>
                         </InputGroup>
                     </Flex>
                     <Text mt="6px" ml="20px" fontSize="sm" textColor={"gray.400"}>Solve using:</Text>
@@ -100,7 +101,7 @@ function LaunchPanel() {
                         </TabList>
                         <TabPanels p="0px">
                             <TabPanel>
-                                <FloatingInput label="Angle" width="150px" height="40px" fontsize="sm" helper="Enter in degrees"/>
+                                <FloatingInput label="Angle" width="150px" height="40px" fontsize="sm" helper="Enter in degrees" />
                             </TabPanel>
                             <TabPanel>
                                 <FloatingInput label="Velocity" width="150px" height="40px" fontsize="sm" helper="Enter in m/s"/>

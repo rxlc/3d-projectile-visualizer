@@ -1,7 +1,7 @@
 import ThreeScene from './ThreeScene'
 
 import LaunchPanel from './Components/LaunchPanel'
-import Settings from './Components/Settings'
+import Focus from './Components/Focus'
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <LaunchPanel/>
-      <Settings/>
+      <Focus/>
       <ThreeScene/>
     </div>
   )

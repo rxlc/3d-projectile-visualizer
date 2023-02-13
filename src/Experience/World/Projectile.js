@@ -110,7 +110,4 @@ export default class Projectile {
             }
         }
     }
-    
-    clear() {
-    }
 }

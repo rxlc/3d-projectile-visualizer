@@ -68,21 +68,41 @@ export default class DistanceLine {
         this.xLine.geometry.setPoints(xPoints.flat())
 
         this.xText.position.set((this.launcher.instance.position.x + this.target.instance.position.x)/2,this.launcher.instance.position.y+0.1,0);
-        this.xText.text = Math.floor((this.target.instance.position.x - this.launcher.instance.position.x)*100)/100;
+        
+        let xT = Math.floor((this.target.instance.position.x - this.launcher.instance.position.x)*100)/100;
+
+        if (xT == 0) {
+            this.xText.text = ""
+        } else {
+            this.xText.text = xT;
+        }
         this.xText.lookAt(this.experience.camera.instance.position);
 
         const yPoints = [this.target.instance.position.x,this.launcher.instance.position.y,this.target.instance.position.z,this.target.instance.position.x,this.target.instance.position.y,this.target.instance.position.z];
         this.yLine.geometry.setPoints(yPoints.flat());
 
         this.yText.position.set(this.target.instance.position.x+0.08,(this.launcher.instance.position.y + this.target.instance.position.y)/2,this.target.instance.position.z+0.08);
-        this.yText.text = Math.floor((this.target.instance.position.y - this.launcher.instance.position.y)*100)/100;
+        
+        let yT = Math.floor((this.target.instance.position.y - this.launcher.instance.position.y)*100)/100;
+
+        if (yT == 0) {
+            this.yText.text = ""
+        } else {
+            this.yText.text = yT;
+        }
         this.yText.lookAt(this.experience.camera.instance.position);
 
         const zPoints = [this.target.instance.position.x,this.launcher.instance.position.y,this.launcher.instance.position.z,this.target.instance.position.x,this.launcher.instance.position.y,this.target.instance.position.z];
         this.zLine.geometry.setPoints(zPoints.flat())
 
         this.zText.position.set(this.target.instance.position.x+0.04,this.launcher.instance.position.y + 0.08,(this.launcher.instance.position.z + this.target.instance.position.z)/2);
-        this.zText.text = Math.floor((this.target.instance.position.z - this.launcher.instance.position.z)*100)/100;
+        let zT = Math.floor((this.target.instance.position.z - this.launcher.instance.position.z)*100)/100;
+
+        if (zT == 0) {
+            this.zText.text = ""
+        } else {
+            this.zText.text = zT;
+        }
         this.zText.lookAt(this.experience.camera.instance.position);
     }
 
