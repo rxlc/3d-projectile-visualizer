@@ -53,15 +53,22 @@ export default function FloatingInput({
     height,
     fontsize,
     helper,
+    mode = 0
 }) {
 
     const {setAngle} = useContext(AngleContext)
+
+    function handleChange(event) {
+      if (mode == 1) {
+        setAngle(event.target.value)
+      }
+    }
 
     return (
         <ChakraProvider theme={theme}>
         <Box p={2}>
             <FormControl variant="floating">
-            <Input placeholder=" " width={width} height={height} onChange={(event) => setAngle(event.target.value)}/>
+            <Input placeholder=" " width={width} height={height} onChange={(event) => handleChange(event)}/>
             <FormLabel fontSize={fontsize}>{label}</FormLabel>
             <FormHelperText fontSize={"xs"}>{helper}</FormHelperText>
             <FormErrorMessage></FormErrorMessage>

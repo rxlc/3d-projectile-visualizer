@@ -12,6 +12,8 @@ export default class Projectile {
         this.animate = false;
         this.vertexCounter = 0;
 
+        this.updateProjectilesEvent = new CustomEvent("updateProjectiles");
+
         this.projectileSpeed = 2.4; //0-4
 
         this.trajectories = [];
@@ -77,7 +79,9 @@ export default class Projectile {
 
         this.animate = true;
 
-        this.trajectories.push(this.trajectory);
+        document.dispatchEvent(this.updateProjectilesEvent)
+
+        this.trajectories.push({angleV: this.angle, angleH: Math.floor(this.convertToDeg(this.turningRad)*10)/10, initVel: Math.floor(this.initVel*100)/100, timeTaken: Math.floor(this.timeTaken*100)/100, line: this.trajectory});
 
         if (this.trajectories.length > this.trlimit) {
             this.scene.remove(this.trajectories.shift());
@@ -86,11 +90,11 @@ export default class Projectile {
         let colorChange = 0;
         for (let i=this.trajectories.length-1; i>=0; i--) {
             if (colorChange == 0) {
-                this.trajectories[i].material = new MeshLineMaterial({lineWidth: 0.01, color: 0xE7622F}); 
+                this.trajectories[i].line.material = new MeshLineMaterial({lineWidth: 0.01, color: 0xE7622F}); 
             } else if (colorChange == 1) {
-                this.trajectories[i].material = new MeshLineMaterial({lineWidth: 0.01, color: 0x8B4000});
+                this.trajectories[i].line.material = new MeshLineMaterial({lineWidth: 0.01, color: 0x8B4000});
             } else {
-                this.trajectories[i].material = new MeshLineMaterial({lineWidth: 0.01, color: 0x876E58});
+                this.trajectories[i].line.material = new MeshLineMaterial({lineWidth: 0.01, color: 0x876E58});
             }
 
             colorChange++;

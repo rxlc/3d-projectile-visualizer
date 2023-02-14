@@ -41,10 +41,6 @@ export default class World {
         this.projectile.newTrajectory(this.launcher.instance.position, this.target.instance.position, angle)
     }
 
-    clear() {
-        this.projectile.clear();
-    }
-
     setTransform() {
         this.transformControls = new TransformControls(this.experience.camera.instance, this.experience.containerRef.current);
         

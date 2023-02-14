@@ -59,15 +59,17 @@ function LaunchPanel() {
 
     return (
         <div style={{
+            position: "absolute",
             height: '100vh',
+            width: '16%',
             display: 'flex',
             flexFlow: "column",
             alignItems: 'flex-start',
             justifyContent: 'center',
           }}>   
             <Card 
-                ml="2%"
-                width="18%"
+                ml="5%"
+                width="100%"
                 bg="gray.800"
                 opacity={isHovered ? 0.8 : 0.5}
                 zIndex={1}
@@ -101,7 +103,7 @@ function LaunchPanel() {
                         </TabList>
                         <TabPanels p="0px">
                             <TabPanel>
-                                <FloatingInput label="Angle" width="150px" height="40px" fontsize="sm" helper="Enter in degrees" />
+                                <FloatingInput label="Angle" width="150px" height="40px" fontsize="sm" helper="Enter in degrees" mode={1} />
                             </TabPanel>
                             <TabPanel>
                                 <FloatingInput label="Velocity" width="150px" height="40px" fontsize="sm" helper="Enter in m/s"/>
