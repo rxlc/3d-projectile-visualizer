@@ -22,7 +22,7 @@ export default class DistanceLine {
         this.distanceLine = new THREE.Mesh(line, material);
         this.scene.add(this.distanceLine);
 
-        this.distanceText = createText('', 0.08);
+        this.distanceText = createText('', 0.05);
 
         this.scene.add(this.distanceText);
     }
@@ -67,7 +67,7 @@ export default class DistanceLine {
         const xPoints = [this.launcher.instance.position.x,this.launcher.instance.position.y,0,this.target.instance.position.x,this.launcher.instance.position.y,0];
         this.xLine.geometry.setPoints(xPoints.flat())
 
-        this.xText.position.set((this.launcher.instance.position.x + this.target.instance.position.x)/2,this.launcher.instance.position.y+0.1,0);
+        this.xText.position.set((this.launcher.instance.position.x + this.target.instance.position.x)/2,this.launcher.instance.position.y,0);
         
         let xT = Math.floor((this.target.instance.position.x - this.launcher.instance.position.x)*100)/100;
 

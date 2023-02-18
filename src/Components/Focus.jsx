@@ -4,11 +4,11 @@ import { Flex, Text, Button, HStack } from '@chakra-ui/react';
 function Focus() {
     return (
         <Flex
-            position="absolute"
+            position="fixed"
             bottom="0"
             left="0"
             ml="2%"
-            mb="12px"
+            mb="0.3%"
             zIndex={1}
             gap="5px"
             flexDirection={"column"}   

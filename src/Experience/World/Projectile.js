@@ -71,24 +71,18 @@ export default class Projectile {
         this.trajectory = new THREE.Mesh(projectile, material);
         this.scene.add(this.trajectory);
 
-        /*
-        this.experience.displayVel.innerHTML = `Launching at an angle of: ${angle}°`
-        this.experience.turningAngle.innerHTML = `Turning angle: ${Math.floor(this.convertToDeg(this.turningRad)*10)/10}°`
-        this.experience.initialVel.innerHTML = `Initital velocity: ${Math.floor(this.initVel*100)/100} m/s`
-        */
-
         this.animate = true;
 
         document.dispatchEvent(this.updateProjectilesEvent)
 
-        this.trajectories.push({angleV: this.angle, angleH: Math.floor(this.convertToDeg(this.turningRad)*10)/10, initVel: Math.floor(this.initVel*100)/100, timeTaken: Math.floor(this.timeTaken*100)/100, line: this.trajectory});
+        this.trajectories.unshift({id:this.trajectories.length+1,targetPos: {x: Math.floor(targetVec.x*100)/100, y: Math.floor(targetVec.y*100)/100, z: Math.floor(targetVec.z*100)/100},angleV: this.angle, angleH: Math.floor(this.convertToDeg(this.turningRad)*10)/10, initVel: Math.floor(this.initVel*100)/100, timeTaken: Math.floor(this.timeTaken*100)/100, line: this.trajectory});
 
         if (this.trajectories.length > this.trlimit) {
             this.scene.remove(this.trajectories.shift());
         }
 
         let colorChange = 0;
-        for (let i=this.trajectories.length-1; i>=0; i--) {
+        for (let i=0; i<this.trajectories.length; i++) {
             if (colorChange == 0) {
                 this.trajectories[i].line.material = new MeshLineMaterial({lineWidth: 0.01, color: 0xE7622F}); 
             } else if (colorChange == 1) {

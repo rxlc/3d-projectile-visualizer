@@ -58,64 +58,54 @@ function LaunchPanel() {
     }
 
     return (
-        <div style={{
-            position: "absolute",
-            height: '100vh',
-            width: '16%',
-            display: 'flex',
-            flexFlow: "column",
-            alignItems: 'flex-start',
-            justifyContent: 'center',
-          }}>   
-            <Card 
-                ml="5%"
-                width="100%"
-                bg="gray.800"
-                opacity={isHovered ? 0.8 : 0.5}
-                zIndex={1}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                style={{
-                    transition: 'opacity 0.3s ease-in-out',
-                }}
-                color="white">
-                    <Text textAlign={"center"} my="14px" fontSize="20px">Launcher Interface</Text>
-                    <Text my="3px" ml="20px" fontSize="sm" textColor={"gray.400"}>Set target position:</Text>
-                    <Flex width="95%" ml="8px">
-                        <InputGroup flexDirection={"column"} margin="4px">
-                            <Text ml="5px" fontSize={"xs"}>x</Text>
-                            <Input variant='outline' height="35px" onChange={() => 0} value={editingPos ? null : targetPos.x} onFocus={() => setEditingPos(true)}  onBlur={(event) => setTargetPosX(Number(event.target.value))}/>
-                        </InputGroup>
-                        <InputGroup flexDirection={"column"} margin="4px">
-                            <Text ml="5px" fontSize={"xs"}>y</Text>
-                            <Input variant='outline' height="35px" onChange={() => 0} value={editingPos ? null : targetPos.y} onFocus={() => setEditingPos(true)}  onBlur={(event) => setTargetPosY(Number(event.target.value))}/>
-                        </InputGroup>
-                        <InputGroup flexDirection={"column"} margin="4px">
-                            <Text ml="5px" fontSize={"xs"}>z</Text>
-                            <Input variant='outline' height="35px" onChange={() => 0} value={editingPos ? null : targetPos.z} onFocus={() => setEditingPos(true)}  onBlur={(event) => setTargetPosZ(Number(event.target.value))}/>
-                        </InputGroup>
-                    </Flex>
-                    <Text mt="6px" ml="20px" fontSize="sm" textColor={"gray.400"}>Solve using:</Text>
-                    <Tabs>
-                        <TabList>
-                            <Tab fontSize={"15px"}>Vertical Angle</Tab>
-                            <Tab fontSize={"15px"}>Launch Velocity</Tab>
-                        </TabList>
-                        <TabPanels p="0px">
-                            <TabPanel>
-                                <FloatingInput label="Angle" width="150px" height="40px" fontsize="sm" helper="Enter in degrees" mode={1} />
-                            </TabPanel>
-                            <TabPanel>
-                                <FloatingInput label="Velocity" width="150px" height="40px" fontsize="sm" helper="Enter in m/s"/>
-                            </TabPanel>
-                        </TabPanels>
-                    </Tabs>
-                    <Button colorScheme='teal' variant='solid' onClick={launch}>
-                        Launch
-                    </Button>
-            </Card>
-
-        </div>
+        <Card
+            position={"fixed"}
+            ml="1%"
+            width="300px" 
+            bg="gray.800"
+            opacity={isHovered ? 0.8 : 0.5}
+            zIndex={1}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            style={{
+                transition: 'opacity 0.3s ease-in-out',
+            }}
+            color="white">
+                <Text textAlign={"center"} my="14px" fontSize="20px">Launcher Interface</Text>
+                <Text my="3px" ml="20px" fontSize="sm" textColor={"gray.400"}>Set target position:</Text>
+                <Flex width="95%" ml="8px">
+                    <InputGroup flexDirection={"column"} margin="4px">
+                        <Text ml="5px" fontSize={"xs"}>x</Text>
+                        <Input variant='outline' height="35px" onChange={() => 0} value={editingPos ? null : targetPos.x} onFocus={() => setEditingPos(true)}  onBlur={(event) => setTargetPosX(Number(event.target.value))}/>
+                    </InputGroup>
+                    <InputGroup flexDirection={"column"} margin="4px">
+                        <Text ml="5px" fontSize={"xs"}>y</Text>
+                        <Input variant='outline' height="35px" onChange={() => 0} value={editingPos ? null : targetPos.y} onFocus={() => setEditingPos(true)}  onBlur={(event) => setTargetPosY(Number(event.target.value))}/>
+                    </InputGroup>
+                    <InputGroup flexDirection={"column"} margin="4px">
+                        <Text ml="5px" fontSize={"xs"}>z</Text>
+                        <Input variant='outline' height="35px" onChange={() => 0} value={editingPos ? null : targetPos.z} onFocus={() => setEditingPos(true)}  onBlur={(event) => setTargetPosZ(Number(event.target.value))}/>
+                    </InputGroup>
+                </Flex>
+                <Text mt="6px" ml="20px" fontSize="sm" textColor={"gray.400"}>Solve using:</Text>
+                <Tabs>
+                    <TabList>
+                        <Tab fontSize={"15px"}>Vertical Angle</Tab>
+                        <Tab fontSize={"15px"}>Launch Velocity</Tab>
+                    </TabList>
+                    <TabPanels p="0px">
+                        <TabPanel>
+                            <FloatingInput label="Angle" width="150px" height="40px" fontsize="sm" helper="Enter in degrees" mode={1} />
+                        </TabPanel>
+                        <TabPanel>
+                            <FloatingInput label="Velocity" width="150px" height="40px" fontsize="sm" helper="Enter in m/s"/>
+                        </TabPanel>
+                    </TabPanels>
+                </Tabs>
+                <Button colorScheme='teal' variant='solid' onClick={launch}>
+                    Launch
+                </Button>
+        </Card>
     )
 }
 
