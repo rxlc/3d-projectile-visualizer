@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import Experience from "./Experience";
 
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 export default class Camera {
     constructor() {
@@ -9,6 +9,8 @@ export default class Camera {
 
         this.sizes = this.experience.sizes
         this.scene = this.experience.scene
+
+        this.stoppedArEvent = new CustomEvent("stoppedAr")
 
         this.canvasReady = false;
 
@@ -24,6 +26,12 @@ export default class Camera {
     setOrbit() {
         this.controls = new OrbitControls(this.instance, this.experience.containerRef.current);
         this.controls.enableDamping = true;
+
+        this.controls.addEventListener("start", () => {
+            if (this.controls.autoRotate) {
+                document.dispatchEvent(this.stoppedArEvent)
+            }
+        })
     }
 
     update() {
@@ -49,4 +57,6 @@ export default class Camera {
         this.instance.aspect = this.sizes.width/this.sizes.height
         this.instance.updateProjectionMatrix();
     }
+
+
 }

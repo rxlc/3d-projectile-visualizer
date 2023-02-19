@@ -11,6 +11,8 @@ import Projectile from './Projectile'
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls'
 import { Vector2 } from 'three';
 
+import gsap from 'gsap';
+
 
 export default class World {
     constructor() {
@@ -34,7 +36,8 @@ export default class World {
         this.scene.add(this.target.indicator);
 
         this.canvasReady = false;
-        
+     
+        this.centerObject = new THREE.Mesh(new THREE.BoxGeometry(0, 0, 0), new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 }));
     }
 
     launch(angle) {
@@ -103,6 +106,74 @@ export default class World {
             this.setTransform();
             this.canvasReady = true
         }
+
+        let center = new THREE.Vector3();
+        center.addVectors(this.launcher.instance.position, this.target.instance.position).multiplyScalar(0.5);
+        this.centerObject.position.copy(center);
     }
 
+    
+
+    focus(targetInstance) {
+        let def = this;
+
+        // Focus animation
+        let aabb = new THREE.Box3().setFromObject(targetInstance);
+        let center = aabb.getCenter(new THREE.Vector3());
+        let size = aabb.getSize(new THREE.Vector3());
+        let camPosition = this.camera.instance.position.clone();
+        let targPosition = targetInstance.position.clone();
+        let distance = camPosition.sub(targPosition);
+        let direction = distance.normalize();
+
+        let offset;
+        let offsetY;
+
+        if (targetInstance == this.centerObject) {
+            offset = distance.clone().sub(direction.multiplyScalar(12));
+            offsetY = 6  
+        } else {
+            offset = distance.clone().sub(direction.multiplyScalar(6));  
+            offsetY = 2
+        }
+
+        
+
+        let newPos = targetInstance.position.clone().sub(offset);
+        newPos.y = this.camera.instance.position.y;
+
+        // Rotate animation
+        let rotDuration = 1;
+
+        let pl = gsap.timeline();
+
+        // Add focus animation to timeline
+
+        // Add camera position animation to timeline
+        pl.to(this.camera.instance.position, {
+            duration: rotDuration,
+            ease: "power4.out",
+            x: newPos.x,
+            y: center.y + offsetY,
+            z: newPos.z,
+            onUpdate: function() {
+                def.camera.controls.update();
+            },
+        },0);
+
+        pl.to(this.camera.controls.target, {
+            duration: rotDuration,
+            x: center.x,
+            y: center.y,
+            z: center.z,
+            ease: "power4.out",
+            onUpdate: function() {
+                def.camera.controls.update();
+            },
+        },0);
+
+        // Play all animations simultaneously
+        pl.play(0);
+    }
+    
 }

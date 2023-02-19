@@ -12,10 +12,6 @@ function Projectiles() {
   const [updateCount, setUpdateCount] = useState(0);
 
   useEffect(() => {
-    console.log(projectiles);
-  }, [projectiles, updateCount]);
-
-  useEffect(() => {
     document.addEventListener("updateProjectiles", () => {
       if (experience.experience) {
         setProjectiles(experience.experience.world.projectile.trajectories);
@@ -44,8 +40,8 @@ function Projectiles() {
             </Card>
           ) : null}
           */}
-          <Text color="white" fontSize={"18px"} ml="5px" opacity={projectiles.length > 0 ? 1 : 0} borderBottom="1px solid white" width="95%"
-            style={{
+          <Text color="white" fontSize={"18px"} ml="5px" opacity={projectiles.length > 0 ? 1 : 0} borderBottom="1px solid white" width="95%" fontWeight={"semibold"}
+            style={{  
               transition: 'opacity 0.3s ease-in-out',
           }}
           >Projectiles:</Text>

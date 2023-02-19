@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react'
-import { Card, Text, Tabs, TabPanels, Tab, TabList, TabPanel, Button, HStack, InputGroup, Input, Flex} from '@chakra-ui/react';
+import { Card, Text, Tabs, TabPanels, Tab, TabList, TabPanel, Button, useToast, InputGroup, Input, Flex} from '@chakra-ui/react';
 import { ExperienceContext } from '../Contexts/ExperienceContext';
 import { AngleContext } from '../Contexts/AngleContext';
 
@@ -12,6 +12,25 @@ function LaunchPanel() {
     const [isHovered, setIsHovered] = useState(false);
     const [editingPos, setEditingPos] = useState(false)
     const [targetPos, setTargetPos] = useState({x:0, y:0, z:0})
+
+    const toast = useToast();
+
+    useEffect(() => {
+        const handleInvalidInput = () => {
+            toast({
+              title: 'Unable to launch projectile with given input',
+              status: 'error',
+              duration: 3000,
+              isClosable: true,
+            });
+          };
+        
+        document.addEventListener('invalidInput', handleInvalidInput);
+
+        return () => {
+            document.removeEventListener('invalidInput', handleInvalidInput);
+        }
+    }, [])
 
     useEffect(() => {
         if (experience.experience) {
