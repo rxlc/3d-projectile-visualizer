@@ -11,6 +11,11 @@ function Focus() {
             experience.experience.camera.controls.autoRotate = false;
             setAr(false)
         })
+
+        document.addEventListener("startAr", () => {
+            experience.experience.camera.controls.autoRotate = true;
+            setAr(true)
+        })
     }, [experience])
 
     function focusOnTarget() {

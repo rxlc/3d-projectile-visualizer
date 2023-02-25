@@ -11,6 +11,7 @@ export default class Camera {
         this.scene = this.experience.scene
 
         this.stoppedArEvent = new CustomEvent("stoppedAr")
+        this.startArEvent = new CustomEvent("startAr")
 
         this.canvasReady = false;
 

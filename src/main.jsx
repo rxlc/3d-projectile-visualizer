@@ -6,6 +6,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { ExperienceProvider } from "./Contexts/ExperienceContext";
 import { AngleProvider } from './Contexts/AngleContext';
 import { ProjectilesProvider } from './Contexts/ProjectilesContext';
+import { VelProvider } from './Contexts/VelContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <ExperienceProvider>
         <AngleProvider>
           <ProjectilesProvider>
-            <App />
+            <VelProvider>
+              <App />
+            </VelProvider>
           </ProjectilesProvider>
         </AngleProvider>
       </ExperienceProvider>

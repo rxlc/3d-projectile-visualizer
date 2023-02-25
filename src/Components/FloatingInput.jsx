@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AngleContext } from "../Contexts/AngleContext";
+import { VelContext } from "../Contexts/VelContext";
 
 import {
     ChakraProvider,
@@ -57,16 +58,20 @@ export default function FloatingInput({
 }) {
 
     const {setAngle} = useContext(AngleContext)
+    const {setVel} = useContext(VelContext)
 
     function handleChange(event) {
       if (mode == 1) {
         setAngle(event.target.value)
       }
+      if (mode == 2) {
+        setVel(event.target.value)
+      }
     }
 
     return (
         <ChakraProvider theme={theme}>
-        <Box p={2}>
+        <Box p={2} marginLeft="10px" marginY="10px">
             <FormControl variant="floating">
             <Input placeholder=" " width={width} height={height} onChange={(event) => handleChange(event)}/>
             <FormLabel fontSize={fontsize}>{label}</FormLabel>

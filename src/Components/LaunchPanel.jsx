@@ -2,12 +2,14 @@ import React, {useState, useContext, useEffect} from 'react'
 import { Card, Text, Tabs, TabPanels, Tab, TabList, TabPanel, Button, useToast, InputGroup, Input, Flex} from '@chakra-ui/react';
 import { ExperienceContext } from '../Contexts/ExperienceContext';
 import { AngleContext } from '../Contexts/AngleContext';
+import { VelContext } from '../Contexts/VelContext';
 
 import FloatingInput from './FloatingInput';
 
 function LaunchPanel() {
     const experience = useContext(ExperienceContext);
     const {angle} = useContext(AngleContext)
+    const {vel} = useContext(VelContext)
 
     const [isHovered, setIsHovered] = useState(false);
     const [editingPos, setEditingPos] = useState(false)
@@ -72,8 +74,12 @@ function LaunchPanel() {
         return Math.floor(num * 100)/100;
     }
 
-    function launch() {
-        experience.experience.world.launch(angle)
+    function launchAngle() {
+        experience.experience.world.launchAngle(angle)
+    }
+
+    function launchVel() {
+        experience.experience.world.launchVel(vel)
     }
 
     return (
@@ -113,17 +119,20 @@ function LaunchPanel() {
                         <Tab fontSize={"15px"}>Launch Velocity</Tab>
                     </TabList>
                     <TabPanels p="0px">
-                        <TabPanel>
+                        <TabPanel p="0px" m="0px">
                             <FloatingInput label="Angle" width="150px" height="40px" fontsize="sm" helper="Enter in degrees" mode={1} />
+                            <Button colorScheme='teal' variant='solid' onClick={launchAngle} width="100%">
+                                Launch
+                            </Button>
                         </TabPanel>
-                        <TabPanel>
-                            <FloatingInput label="Velocity" width="150px" height="40px" fontsize="sm" helper="Enter in m/s"/>
+                        <TabPanel p="0px" m="0px">
+                            <FloatingInput label="Velocity" width="150px" height="40px" fontsize="sm" helper="Enter in m/s" mode={2}/>
+                            <Button colorScheme='teal' variant='solid' onClick={launchVel} width="100%">
+                                Launch
+                            </Button>
                         </TabPanel>
                     </TabPanels>
                 </Tabs>
-                <Button colorScheme='teal' variant='solid' onClick={launch}>
-                    Launch
-                </Button>
         </Card>
     )
 }

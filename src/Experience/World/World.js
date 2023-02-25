@@ -40,8 +40,12 @@ export default class World {
         this.centerObject = new THREE.Mesh(new THREE.BoxGeometry(0, 0, 0), new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 }));
     }
 
-    launch(angle) {
-        this.projectile.newTrajectory(this.launcher.instance.position, this.target.instance.position, angle)
+    launchAngle(angle) {
+        this.projectile.newTrajectoryAngle(this.launcher.instance.position, this.target.instance.position, angle)
+    }
+
+    launchVel(vel) {
+        this.projectile.newTrajectoryVel(this.launcher.instance.position, this.target.instance.position, vel)
     }
 
     setTransform() {
@@ -130,8 +134,10 @@ export default class World {
         let offsetY;
 
         if (targetInstance == this.centerObject) {
-            offset = distance.clone().sub(direction.multiplyScalar(12));
-            offsetY = 6  
+            let dist = this.launcher.instance.position.distanceTo(this.target.instance.position)
+            
+            offset = distance.clone().sub(direction.multiplyScalar(dist*1.4));
+            offsetY = 1 + dist*0.2
         } else {
             offset = distance.clone().sub(direction.multiplyScalar(6));  
             offsetY = 2
