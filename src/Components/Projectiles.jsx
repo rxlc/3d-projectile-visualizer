@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { ExperienceContext } from '../Contexts/ExperienceContext';
 import { ProjectilesContext } from '../Contexts/ProjectilesContext';
-import { Card, Text, Divider, Flex, VStack, position } from '@chakra-ui/react';
+import { Card, Text, Flex, VStack, Button } from '@chakra-ui/react';
 import { AnimatePresence } from "framer-motion" 
 
 import ProjectileCard from './ProjectileCard';
@@ -20,12 +20,17 @@ function Projectiles() {
     });
   }, [experience.experience, setProjectiles]);
 
+  function clear() {
+    experience.experience.world.projectile.clear()
+    setProjectiles([]);
+  }
+
     return ( 
         <Flex 
           position={"fixed"}
           flexDirection="column"
           right="0"
-          width="16%"
+          maxWidth="20%"
           mr="10px"
           opacity={0.8}
           zIndex={1}>
@@ -40,12 +45,18 @@ function Projectiles() {
             </Card>
           ) : null}
           */}
-          <Text color="white" fontSize={"18px"} ml="5px" opacity={projectiles.length > 0 ? 1 : 0} borderBottom="1px solid white" width="95%" fontWeight={"semibold"}
-            style={{  
-              transition: 'opacity 0.3s ease-in-out',
-          }}
-          >Projectiles:</Text>
-          <VStack w={400} spacing={3} mt="4px" height="200px">
+          <Flex flexDir={"row"} opacity={projectiles.length > 0 ? 1 : 0} alignItems="flex-end" borderBottom={"1px solid white"}>
+            <Text color="white" fontSize={"18px"} ml="5px" width="95%" fontWeight={"semibold"}
+              style={{  
+                transition: 'opacity 0.3s ease-in-out',
+            }}
+            >Projectiles:</Text>
+            <Button height="30px" fontSize="sm"  colorScheme='teal' variant='outline' mb="4px" onClick={clear}>
+              Clear All
+            </Button>
+          </Flex>
+
+          <VStack w={400} spacing={3} mt="4px" width="100%" height="200px">
             <AnimatePresence>
               {projectiles.map((projectile) => {
                 return (

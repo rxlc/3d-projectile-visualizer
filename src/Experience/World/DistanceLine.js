@@ -74,7 +74,7 @@ export default class DistanceLine {
         if (xT == 0) {
             this.xText.text = ""
         } else {
-            this.xText.text = xT;
+            this.xText.text = `${xT}m`;
         }
         this.xText.lookAt(this.experience.camera.instance.position);
 
@@ -88,7 +88,7 @@ export default class DistanceLine {
         if (yT == 0) {
             this.yText.text = ""
         } else {
-            this.yText.text = yT;
+            this.yText.text = `${yT}m`;
         }
         this.yText.lookAt(this.experience.camera.instance.position);
 
@@ -101,7 +101,7 @@ export default class DistanceLine {
         if (zT == 0) {
             this.zText.text = ""
         } else {
-            this.zText.text = zT;
+            this.zText.text = `${zT}m`;
         }
         this.zText.lookAt(this.experience.camera.instance.position);
     }
@@ -112,7 +112,7 @@ export default class DistanceLine {
 
         this.distanceText.position.set((this.launcher.instance.position.x + this.target.instance.position.x)/2, (this.launcher.instance.position.y + this.target.instance.position.y)/2 + 0.2, (this.launcher.instance.position.z + this.target.instance.position.z)/2,)
         this.distanceText.lookAt(this.experience.camera.instance.position);
-        this.distanceText.text = `${Math.floor(this.launcher.instance.position.distanceTo(this.target.instance.position)*100)/100}`
+        this.distanceText.text = `${Math.floor(this.launcher.instance.position.distanceTo(this.target.instance.position)*100)/100}m`
     }
 
     update() {

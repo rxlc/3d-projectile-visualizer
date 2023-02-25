@@ -15,7 +15,7 @@ export default class Launcher {
             new THREE.MeshBasicMaterial({color: 0xD93934})
         )
 
-        this.instance.position.set(4,0,0);
+        this.instance.position.set(3,0.4,-2);
         this.indicator = createText('Target',0.08);
     }
 

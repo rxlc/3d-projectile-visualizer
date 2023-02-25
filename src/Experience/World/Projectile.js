@@ -18,6 +18,8 @@ export default class Projectile {
         this.projectileSpeed = 2.4; //0-4
 
         this.trajectories = [];
+
+        this.maxHeight = 0;
     }
 
     convertToRad(deg) {
@@ -43,6 +45,13 @@ export default class Projectile {
             document.dispatchEvent(this.invalidInputEvent)
         } else {
             this.launchTrajectory(launcherVec, targetVec)
+        }
+    }
+
+    clear() {
+        for (let i=0; i<this.trajectories.length; i++) {
+            this.scene.remove(this.trajectories[i].line)
+            this.trajectories.pop()
         }
     }
 
@@ -74,6 +83,8 @@ export default class Projectile {
             z: (this.initVel * Math.cos(this.angleInRad)) * Math.sin(this.turningRad)
         }
 
+        
+
         this.pos = {
             x: launcherVec.x,
             y: launcherVec.y,
@@ -86,16 +97,16 @@ export default class Projectile {
                 this.pos.y = targetVec.y;
                 this.pos.z = targetVec.z;
                 this.projectilePoints.push(this.pos.x,this.pos.y,this.pos.z);
-        
                 break;
             }
+
             this.projectilePoints.push(this.pos.x,this.pos.y,this.pos.z);
 
             this.pos.x = (this.vel.x * i);
             this.pos.y = (this.vel.y * i) + (-9.81*Math.pow(i,2))/2;
             this.pos.z = (this.vel.z * i);
         }
-        
+
         this.trajPoints = [];
 
         const projectile = new MeshLine();
@@ -113,7 +124,7 @@ export default class Projectile {
         this.trajectories.unshift({id:this.trajectories.length+1,targetPos: {x: Math.floor(targetVec.x*100)/100, y: Math.floor(targetVec.y*100)/100, z: Math.floor(targetVec.z*100)/100},angleV: Math.floor(this.angle*100)/100, angleH: Math.floor(this.convertToDeg(this.turningRad)*100)/100, initVel: Math.floor(this.initVel*100)/100, timeTaken: Math.floor(this.timeTaken*100)/100, line: this.trajectory});
 
         if (this.trajectories.length > this.trlimit) {
-            this.scene.remove(this.trajectories.shift());
+            this.scene.remove(this.trajectories.pop());
         }
 
         let colorChange = 0;
