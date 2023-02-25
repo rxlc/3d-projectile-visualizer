@@ -15,6 +15,9 @@ export default class Projectile {
         this.updateProjectilesEvent = new CustomEvent("updateProjectiles");
         this.invalidInputEvent = new CustomEvent("invalidInput");
 
+        this.pStartEvent = new CustomEvent("pStart");
+        this.pEndEvent = new CustomEvent("pEnd");
+
         this.projectileSpeed = 2.4; //0-4
 
         this.trajectories = [];
@@ -51,8 +54,9 @@ export default class Projectile {
     clear() {
         for (let i=0; i<this.trajectories.length; i++) {
             this.scene.remove(this.trajectories[i].line)
-            this.trajectories.pop()
         }
+
+        this.trajectories = [];
     }
 
     newTrajectoryVel(launcherVec, targetVec, vel) {
@@ -118,6 +122,7 @@ export default class Projectile {
         this.scene.add(this.trajectory);
 
         this.animate = true;
+        document.dispatchEvent(this.pStartEvent);
 
         document.dispatchEvent(this.updateProjectilesEvent)
 
@@ -149,6 +154,7 @@ export default class Projectile {
 
                 this.vertexCounter += 3;
             } else if (this.vertexCounter >= this.projectilePoints.length) {
+                document.dispatchEvent(this.pEndEvent)
                 this.vertexCounter = 0;
                 this.animate = false;
             }

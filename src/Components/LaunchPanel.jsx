@@ -15,6 +15,8 @@ function LaunchPanel() {
     const [editingPos, setEditingPos] = useState(false)
     const [targetPos, setTargetPos] = useState({x:0, y:0, z:0})
 
+    const [pInProgress, setPInProgress] = useState(false);
+
     const toast = useToast();
 
     useEffect(() => {
