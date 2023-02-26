@@ -4,6 +4,7 @@ import LaunchPanel from './Components/LaunchPanel'
 import Focus from './Components/Focus'
 import Projectiles from './Components/Projectiles'
 
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <Focus/>
       <Projectiles/>
       <ThreeScene/>
+      <Analytics />
     </div>
   )
 }
