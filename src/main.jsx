@@ -6,6 +6,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { ExperienceProvider } from "./Contexts/ExperienceContext";
 import { AngleProvider } from './Contexts/AngleContext';
 import { ProjectilesProvider } from './Contexts/ProjectilesContext';
+import { BtProvider } from './Contexts/BTContext';
 import { VelProvider } from './Contexts/VelContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -15,7 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <AngleProvider>
           <ProjectilesProvider>
             <VelProvider>
-              <App />
+              <BtProvider>
+                <App />
+              </BtProvider>
             </VelProvider>
           </ProjectilesProvider>
         </AngleProvider>

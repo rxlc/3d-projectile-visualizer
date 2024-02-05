@@ -6,8 +6,8 @@ export default class Helpers {
         this.experience = new Experience();
         this.scene = this.experience.scene;
 
-        this.size = 30;
-        this.divisions = 30;
+        this.size = 6;
+        this.divisions = 6;
 
         this.setInstance();
     }

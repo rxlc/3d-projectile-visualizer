@@ -1,20 +1,15 @@
 import ThreeScene from './ThreeScene'
-
-import LaunchPanel from './Components/LaunchPanel'
 import Focus from './Components/Focus'
-import Projectiles from './Components/Projectiles'
-
-import { Analytics } from "@vercel/analytics/react"
+import Bluetooth from './Components/Bluetooth'
+import Terminal from './Components/Terminal'
 
 function App() {
-
   return (
-    <div className="App" style={{display: "flex", width: window.innerWidth, height: window.innerHeight, alignItems: "center", justifyItems:"center"}}>
-      <LaunchPanel/>
+    <div className="App">
       <Focus/>
-      <Projectiles/>
+      <Bluetooth/>
+      <Terminal/>
       <ThreeScene/>
-      <Analytics />
     </div>
   )
 }

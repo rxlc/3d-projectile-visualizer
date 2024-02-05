@@ -31,6 +31,9 @@ export default class Camera {
         this.controls.enableDamping = true;
 
         this.controls.target = new Vector3(0.8481422355116394, -0.27352203244921847, -0.969)
+        this.controls.maxDistance = 10;
+        this.controls.minDistance = 5;
+        this.controls.autoRotateSpeed = 0.3;
         
         this.controls.addEventListener("start", () => {
             if (this.controls.autoRotate) {

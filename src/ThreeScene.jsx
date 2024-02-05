@@ -12,7 +12,7 @@ function ThreeScene() {
 
     }, [containerRef, setExperience])
 
-    return <div ref={containerRef} style={{ background: 'gray', width: window.innerWidth, height: window.innerHeight, position: "fixed", left: "0px", top: "0px" }} id="fcanvas"/>;
+    return <div ref={containerRef} id="fcanvas"/>;
 }
 
 export default ThreeScene;
